@@ -28,6 +28,12 @@ export class JobRoutes {
             }),
             asyncHandler((req: Request, res: Response) => this.jobController.createJob(req, res))
         )
+
+        //get featured jobs
+        this.router.get(
+            '/featured',
+            asyncHandler((req: Request, res: Response) => this.jobController.getFeaturedJobs(req, res))
+        )
     }
 
     public getRouter(): Router {

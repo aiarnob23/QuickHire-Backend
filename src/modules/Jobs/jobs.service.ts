@@ -24,4 +24,12 @@ export class JobService extends BaseService<IJob> {
         const job = await this.create(data);
         return job;
     }
+
+    /**
+     * Get featured jobs
+     */
+    async getFeaturedJobs(): Promise<IJob[]> {
+        const jobs = await this.findMany({ isFeatured: true });
+        return jobs.data;
+    }
 }

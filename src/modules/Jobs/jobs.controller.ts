@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import { BaseController } from "../../core/BaseController";
 import type { JobService } from "./jobs.service";
+import { HTTPStatusCode } from "../../types/HTTPStatusCode";
 
 
 export class JobController extends BaseController {
@@ -23,5 +24,18 @@ export class JobController extends BaseController {
             'Job created successfully',
             result
         );
+    }
+
+    /**
+    * Get featured jobs
+    * POST /api/jobs/featured
+    */
+    public getFeaturedJobs = async (req: Request, res: Response) => {
+        const jobs = await this.jobService.getFeaturedJobs();
+        return this.sendResponse(
+            res,
+            'Featured Jobs fetched successfully',
+            HTTPStatusCode.OK,
+            jobs);
     }
 }
