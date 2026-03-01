@@ -31,12 +31,22 @@ export class JobController extends BaseController {
      * GET /api/jobs
      */
     public getAllJobs = async (req: Request, res: Response) => {
-        const jobs = await this.jobService.getAllJobs();
+
+        const { search, category, location, workSetting } = req.query;
+
+        const jobs = await this.jobService.getAllJobs({
+            search: search as string,
+            category: category as string,
+            location: location as string,
+            workSetting: workSetting as string,
+        });
+
         return this.sendResponse(
             res,
             'Jobs fetched successfully',
             HTTPStatusCode.OK,
-            jobs);
+            jobs
+        );
     }
 
     /**
@@ -44,6 +54,7 @@ export class JobController extends BaseController {
      * GET /api/jobs/:id
      */
     public getJobById = async (req: Request, res: Response) => {
+        console.log(req.params.id)
         const job = await this.jobService.getJobById(req.params.id as string);
         return this.sendResponse(
             res,
@@ -63,5 +74,18 @@ export class JobController extends BaseController {
             'Featured Jobs fetched successfully',
             HTTPStatusCode.OK,
             jobs);
+    }
+
+    /**
+     * Delete a job
+     * DELETE /api/jobs/:id
+     */
+    public deleteJob = async (req: Request, res: Response) => {
+        const job = await this.jobService.deleteJob(req.params.id as string);
+        return this.sendResponse(
+            res,
+            'Job deleted successfully',
+            HTTPStatusCode.OK,
+            job);
     }
 }

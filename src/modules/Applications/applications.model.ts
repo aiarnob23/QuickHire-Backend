@@ -30,8 +30,7 @@ const applicationSchema = new Schema<IApplication>(
     userId: {
       type: Schema.Types.ObjectId,
       ref: "User",
-      required: true,
-      index: true,
+      required: false,
     },
 
     name: {
@@ -91,15 +90,6 @@ const applicationSchema = new Schema<IApplication>(
       trim: true,
     },
 
-    skills: {
-      type: [String],
-      required: true,
-      validate: {
-        validator: (val: string[]) => val.length > 0,
-        message: "At least one skill is required",
-      },
-    },
-
     expectedSalary: {
       type: expectedSalarySchema,
       required: true,
@@ -138,7 +128,6 @@ const applicationSchema = new Schema<IApplication>(
 ======================== */
 
 applicationSchema.index({ jobId: 1, status: 1 });
-applicationSchema.index({ userId: 1 });
 applicationSchema.index({ createdAt: -1 });
 
 export const ApplicationModel = model<IApplication>(

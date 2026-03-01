@@ -24,7 +24,7 @@ export class ApplicationService extends BaseService<IApplication> {
         const transformedData: Partial<IApplication> = {
             ...data,
             jobId: new Types.ObjectId(data.jobId),
-            userId: new Types.ObjectId(data.userId),
+            userId: new Types.ObjectId(data.userId? data.userId : ""),
         };
         AppLogger.info('Creating Application...', transformedData);
         const application = await this.create(transformedData);

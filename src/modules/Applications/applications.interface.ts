@@ -20,7 +20,7 @@ export enum ExpectedSalaryCurrency {
 export interface IApplication {
     _id: Types.ObjectId;
     jobId: Types.ObjectId;
-    userId: Types.ObjectId;
+    userId?: Types.ObjectId;
 
     name: string;
     email: string;
@@ -33,7 +33,7 @@ export interface IApplication {
     totalYearsOfExperience: number;
     currentCompany?: string;
     currentDesignation?: string;
-    skills: string[];
+    skills?: string[];
 
     expectedSalary: {
         amount: number;

@@ -17,8 +17,8 @@ export class JobRoutes {
     }
 
     private initialized(): void {
-        //----------protected routes (admin only)
-        //create job
+
+        //create job (admin only)
         this.router.post(
             '/',
             authenticate,
@@ -35,17 +35,27 @@ export class JobRoutes {
             asyncHandler((req: Request, res: Response) => this.jobController.getAllJobs(req, res))
         )
 
+        //get featured jobs
+        this.router.get(
+            '/featured',
+            asyncHandler((req: Request, res: Response) => this.jobController.getFeaturedJobs(req, res))
+        )
+
         //get job by id
         this.router.get(
             '/:id',
             asyncHandler((req: Request, res: Response) => this.jobController.getJobById(req, res))
         )
 
-        //get featured jobs
-        this.router.get(
-            '/featured',
-            asyncHandler((req: Request, res: Response) => this.jobController.getFeaturedJobs(req, res))
+        //delete job (admin only)
+        this.router.delete(
+            '/:id',
+            authenticate,
+            authorize('admin'),
+            asyncHandler((req: Request, res: Response) => this.jobController.deleteJob(req, res))
         )
+
+
     }
 
     public getRouter(): Router {
