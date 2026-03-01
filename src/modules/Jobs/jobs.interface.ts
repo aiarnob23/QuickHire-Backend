@@ -27,6 +27,13 @@ export enum ExperienceLevel {
     SENIOR = "Senior",
     EXPERT = "Expert",
 }
+
+export enum SalaryCurrency {
+    BDT = "BDT",
+    USD = "USD",
+    EUR = "EUR",
+}
+
 export interface IJob {
     _id: Types.ObjectId;
     title: string;
@@ -43,7 +50,7 @@ export interface IJob {
     salaryRange?: {
         min: number;
         max: number;
-        currency: string;
+        currency: SalaryCurrency;
     };
     companyWebsite?: string;
     companyLogo?: string;
