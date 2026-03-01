@@ -97,5 +97,5 @@ const jobSchema = new Schema<IJob>(
 );
 
 
-jobSchema.index({ title: "text", company: "text", categories: 1 });
+jobSchema.index({ title: "text", company: "text"});
 export const JobModel = model<IJob>("Job", jobSchema);

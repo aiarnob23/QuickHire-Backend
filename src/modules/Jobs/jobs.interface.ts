@@ -54,7 +54,7 @@ export interface IJob {
     };
     companyWebsite?: string;
     companyLogo?: string;
-    applicants: Types.ObjectId[];
+    applicants?: Types.ObjectId[];
 
     isFeatured?: boolean;
     status: JobStatus;

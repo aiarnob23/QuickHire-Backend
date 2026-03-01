@@ -2,6 +2,7 @@ import { config } from "./core/config";
 import { IgnitorApp } from "./core/IgnitorApp";
 import { AppLogger } from "./core/logging/logger";
 import { AuthModule } from "./modules/Auth/AuthModule";
+import { JobModule } from "./modules/Jobs/JobModule";
 
 // Main application bootstrap function
 async function bootstrap() {
@@ -14,6 +15,7 @@ async function bootstrap() {
 
         // Register application modules
         app.registerModule(new AuthModule());
+        app.registerModule(new JobModule());
 
         AppLogger.info('✅ All modules registered successfully');
 
