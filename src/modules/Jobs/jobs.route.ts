@@ -3,6 +3,7 @@ import type { JobController } from "./jobs.controller";
 import { validateRequest } from "../../middlewares/validation";
 import { JobValidation } from "./jobs.validation";
 import { asyncHandler } from "../../middlewares/asyncHandler";
+import { authenticate, authorize } from "../../middlewares/auth";
 
 
 export class JobRoutes {
@@ -20,6 +21,8 @@ export class JobRoutes {
         //create job
         this.router.post(
             '/',
+            authenticate,
+            authorize('admin'),
             validateRequest({
                 body: JobValidation.create,
             }),
