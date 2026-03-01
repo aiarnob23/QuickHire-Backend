@@ -27,6 +27,32 @@ export class JobController extends BaseController {
     }
 
     /**
+     * Get all jobs
+     * GET /api/jobs
+     */
+    public getAllJobs = async (req: Request, res: Response) => {
+        const jobs = await this.jobService.getAllJobs();
+        return this.sendResponse(
+            res,
+            'Jobs fetched successfully',
+            HTTPStatusCode.OK,
+            jobs);
+    }
+
+    /**
+     * Get job by id
+     * GET /api/jobs/:id
+     */
+    public getJobById = async (req: Request, res: Response) => {
+        const job = await this.jobService.getJobById(req.params.id as string);
+        return this.sendResponse(
+            res,
+            'Job fetched successfully',
+            HTTPStatusCode.OK,
+            job);
+    }
+
+    /**
     * Get featured jobs
     * POST /api/jobs/featured
     */

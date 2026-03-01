@@ -29,6 +29,18 @@ export class JobRoutes {
             asyncHandler((req: Request, res: Response) => this.jobController.createJob(req, res))
         )
 
+        //get all jobs
+        this.router.get(
+            '/',
+            asyncHandler((req: Request, res: Response) => this.jobController.getAllJobs(req, res))
+        )
+
+        //get job by id
+        this.router.get(
+            '/:id',
+            asyncHandler((req: Request, res: Response) => this.jobController.getJobById(req, res))
+        )
+
         //get featured jobs
         this.router.get(
             '/featured',

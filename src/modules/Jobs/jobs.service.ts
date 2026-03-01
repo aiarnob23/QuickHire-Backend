@@ -26,10 +26,26 @@ export class JobService extends BaseService<IJob> {
     }
 
     /**
+     * Get all jobs
+     */
+    async getAllJobs(): Promise<IJob[]> {
+        const jobs = await this.findMany();
+        return jobs.data;
+    }
+
+    /**
      * Get featured jobs
      */
     async getFeaturedJobs(): Promise<IJob[]> {
         const jobs = await this.findMany({ isFeatured: true });
         return jobs.data;
+    }
+
+    /**
+     * Get job by id
+     */
+    async getJobById(id: string): Promise<IJob> {
+        const job = await this.findById(id);
+        return job;
     }
 }
