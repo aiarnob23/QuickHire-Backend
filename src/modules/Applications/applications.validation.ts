@@ -1,8 +1,6 @@
 import { z } from "zod";
 import { ApplicationStatus, ExpectedSalaryCurrency } from "./applications.interface";
 
-
-
 const objectIdSchema = z
     .string()
     .regex(/^[0-9a-fA-F]{24}$/, "Invalid Mongo ObjectId");
