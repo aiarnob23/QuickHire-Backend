@@ -53,6 +53,7 @@ export class IgnitorApp {
 
         //CORS
         const allowedOrigins = [
+            "https://quickhire-frontend-eight.vercel.app",
             "https://quickhire-frontend-o7sen2hpk-aminul-islam-arnobs-projects.vercel.app",
             'http://localhost:3000',
             'http://localhost:3001',
